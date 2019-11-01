@@ -151,9 +151,11 @@ public class Main {
             for (int j = 0; j < array[i].length; j++) {
                 if (array[i][j] < minElement) {
                     minElement = array[i][j];
+                    array[i][j] = minElement;
                 }
                 if (array[i][j] > maxElement) {
                     maxElement = array[i][j];
+                    array[i][j] = maxElement;
                 }
             }
         }
@@ -169,6 +171,7 @@ public class Main {
                 }
                 if (j % 2 != 0) {
                     tmp = array[i][j - 1];
+                    array[i][j - 1] = tmp;
                 }
             }
         }
