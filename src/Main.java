@@ -5,6 +5,7 @@ public class Main {
 
     public static final int LENGTH = 5;
     public static final int WIDTH = 5;
+    public static final  Random R = new Random();
 
     public static void main(String[] args) {
 
@@ -70,19 +71,17 @@ public class Main {
 
     public static int[] generateArray(int LENGTH) {
         int[] array = new int[LENGTH];
-        Random r = new Random();
         for (int i = 0; i < array.length; i++) {
-            array[i] = r.nextInt(25);
+            array[i] = R.nextInt(25);
         }
         return array;
     }
 
     public static int[][] generateTwoDimensionalArray(int LENGTH, int WIDTH) {
         int[][] array = new int[LENGTH][WIDTH];
-        Random r = new Random();
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {
-                array[i][j] = r.nextInt(10);
+                array[i][j] = R.nextInt(10);
             }
         }
         return array;
@@ -121,9 +120,9 @@ public class Main {
         int[] unsortedArray = {2, 3, 1, 0, 9, 4, 6, 5, 8,};
         int sum = 0;
         int missingElement = 0;
+        int correctArraySum = 45;
         for (int i = 0; i < unsortedArray.length; i++) {
             sum += unsortedArray[i];
-            int correctArraySum = 45;
             missingElement = correctArraySum - sum;
             if (sum == correctArraySum) {
                 missingElement = -1;
@@ -145,33 +144,39 @@ public class Main {
     }
 
     public static int[][] swapMinAndMaxInTwoDimensionalArray(int[][] array) {
-        int maxElement = array[0][0];
-        int minElement = array[0][0];
+        int max = 0;
+        int min = 0;
+        int minI = 0;
+        int minJ = 0;
+        int maxI = 0;
+        int maxJ = 0;
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {
-                if (array[i][j] < minElement) {
-                    minElement = array[i][j];
-                    array[i][j] = minElement;
+                if (array[i][j] < min) {
+                    min = array[i][j];
+                    minI = i;
+                    minJ = j;
                 }
-                if (array[i][j] > maxElement) {
-                    maxElement = array[i][j];
-                    array[i][j] = maxElement;
+                if (array[i][j] > max) {
+                    max = array[i][j];
+                    maxI = i;
+                    maxJ = j;
                 }
             }
         }
+        array[minI][minJ] = max;
+        array[maxI][maxJ] = min;
         return array;
     }
 
     public static int[][] swapOddElementInTwoDimensionalArray(int[][] array) {
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {
-                int tmp = array[i][j];
                 if ((array[i][0]) % 2 != 0) {
-                    tmp = 0;
+                    array[i][j]= 0;
                 }
                 if (j % 2 != 0) {
-                    tmp = array[i][j - 1];
-                    array[i][j - 1] = tmp;
+                   array[i][j] = array[i][j - 1];
                 }
             }
         }
